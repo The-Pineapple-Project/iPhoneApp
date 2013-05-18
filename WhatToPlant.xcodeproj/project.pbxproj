@@ -22,6 +22,7 @@
 		CB7359B117482D6000429D6E /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CB7359AF17482D6000429D6E /* logo.png */; };
 		CB7359B317482DD400429D6E /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CB7359B217482DD400429D6E /* icon.png */; };
 		CB7359B517482E4F00429D6E /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CB7359B417482E4F00429D6E /* icon@2x.png */; };
+		CB7359B81748337300429D6E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB7359B61748326500429D6E /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB7359B81748337300429D6E /* CoreLocation.framework in Frameworks */,
 				CB4968F61748133C005D007E /* UIKit.framework in Frameworks */,
 				CB4968F81748133C005D007E /* Foundation.framework in Frameworks */,
 				CB4968FA1748133C005D007E /* CoreGraphics.framework in Frameworks */,

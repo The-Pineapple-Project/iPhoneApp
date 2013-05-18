@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface AppLoadingViewController : UIViewController
+@interface AppLoadingViewController : UIViewController <CLLocationManagerDelegate>
 {
+    CLLocationManager *locationManager;
+    
     __weak IBOutlet UIImageView *logo;
     __weak IBOutlet UILabel *greeting;
     __weak IBOutlet UIProgressView *progressBar;
