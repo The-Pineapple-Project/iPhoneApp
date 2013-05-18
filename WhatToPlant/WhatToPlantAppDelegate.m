@@ -7,6 +7,7 @@
 //
 
 #import "WhatToPlantAppDelegate.h"
+#import "AppLoadingViewController.h"
 
 @implementation WhatToPlantAppDelegate
 
@@ -14,6 +15,11 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    
+    AppLoadingViewController *alvc = [[AppLoadingViewController alloc] init];
+    
+    [[self window] setRootViewController:alvc];
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
