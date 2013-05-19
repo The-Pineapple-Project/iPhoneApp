@@ -7,6 +7,9 @@
 //
 
 #import "AppLoadingViewController.h"
+#import "Geolookup.h"
+#import <RestKit/RestKit.h>
+#import "MappingProvider.h"
 
 @interface AppLoadingViewController ()
 
@@ -38,19 +41,58 @@
 - (void)locationManager:(CLLocationManager *)manager
      didUpdateLocations:(NSArray *)locations
 {
-    CLLocation *mostRecentLoc = locations[0];
-    NSLog(@"%@", mostRecentLoc);
+    CLLocation *loc = locations[0];
+    NSLog(@"%@", loc);
+    
+    
+//    [self loadClimateData];
 }
 
-- (void)locationManager:(CLLocationManager *)manager
-didChangeAuthorizationStatus:(CLAuthorizationStatus)status
+- (void)loadClimateData
 {
-    if (status == kCLAuthorizationStatusAuthorized)
-    {
-        // progress: Finished Step 2 (requesting location). Step 3 is "send request for climate data to our web service"
-        [progressBar setProgress:0.50 animated:YES];
-        [progressText setText:@"retrieving climate data"];
-    }
+    // Get latitude & longitude
+    CLLocationCoordinate2D coordinate = [[locationManager location] coordinate];
+    
+    // API: Weather Underground
+    // http:// api.wunderground.com/api/81cd84db7bf69b83/geolookup/q/37.776289,-122.395234.json
+    NSIndexSet *statusCodeSet = RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful);
+    RKMapping *mapping = [MappingProvider geolookupMapping];
+    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor
+                                                responseDescriptorWithMapping:mapping
+                                                pathPattern:nil
+                                                keyPath:nil
+                                                statusCodes:statusCodeSet];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://api.wunderground.com/api/%@/geolookup/q/%f,%f.json",
+                                       WUNDERGROUND_API_KEY,
+                                       coordinate.latitude,
+                                       coordinate.longitude
+                                       ]];
+    NSURLRequest *req = [NSURLRequest requestWithURL:url];
+    RKObjectRequestOperation *operation = [[RKObjectRequestOperation alloc] initWithRequest:req
+                                                                        responseDescriptors:@[responseDescriptor]];
+    
+    [operation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        NSLog(@"SUCCESS! Response: %@", mappingResult.array);
+//        [SVProgressHUD dismiss];
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        NSLog(@"ERROR: %@", error);
+        NSLog(@"Response: %@", operation.HTTPRequestOperation.responseString);
+//        [SVProgressHUD showErrorWithStatus:@"Request failed"];
+    }];
+    
+    [operation start];
+    
+    
+    // response details @ http://www.wunderground.com/weather/api/d/docs?d=data/geolookup
+    
+    // API: Google Maps for iOS
+    // --CUT-- can't be used as a JSON REST service, it makes calls locally instead, so not good as a placeholder until our server-side API is ready
+    // https://developers.google.com/maps/documentation/ios/start
+    // Key for iOS apps (with bundle identifiers)
+    //  API key: AIzaSyC6tiz15CK6NIfKKhEdbeKOiy-cyDTUrj8
+    //  iOS apps: com.thepineappleproject.WhatToPlant
+    //  Activated on:	May 18, 2013 4:27 PM
+    //  Activated by:	 enderash@gmail.com – you
 }
 
 - (void)locationManager:(CLLocationManager *)manager

@@ -19,17 +19,20 @@ PODS:
     - TransitionKit (= 1.1.0)
   - RestKit/Testing (0.20.1)
   - SOCKit (1.1)
+  - SVProgressHUD (0.9)
   - TransitionKit (1.1.0)
 
 DEPENDENCIES:
   - RestKit (~> 0.20.0)
   - RestKit/Search (~> 0.20.0)
   - RestKit/Testing (~> 0.20.0)
+  - SVProgressHUD
 
 SPEC CHECKSUMS:
   AFNetworking: 02a1b682b3c3fa39afd22e725ab8f4a65cb157b6
   RestKit: ceca63bc91172098c710c469facd2560e8a59164
   SOCKit: ed67aeeca4a697b63a933229e53f4670d5b9300f
+  SVProgressHUD: 03d4845ec8e64591726428a08236c6a5489d45f8
   TransitionKit: 1624e84f252d5cd26900be28ccb73c69fbe63f8a
 
 COCOAPODS: 0.19.1

@@ -12,3 +12,6 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 #endif
+
+//==CONSTANTS==
+#define WUNDERGROUND_API_KEY @"81cd84db7bf69b83"

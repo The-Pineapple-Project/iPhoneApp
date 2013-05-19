@@ -23,6 +23,8 @@
 		CB7359B317482DD400429D6E /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CB7359B217482DD400429D6E /* icon.png */; };
 		CB7359B517482E4F00429D6E /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CB7359B417482E4F00429D6E /* icon@2x.png */; };
 		CB7359B81748337300429D6E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB7359B61748326500429D6E /* CoreLocation.framework */; };
+		CB7359BE174847F600429D6E /* Geolookup.m in Sources */ = {isa = PBXBuildFile; fileRef = CB7359BD174847F600429D6E /* Geolookup.m */; };
+		CB7359C1174849FC00429D6E /* MappingProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = CB7359C0174849FC00429D6E /* MappingProvider.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,10 @@
 		CB7359B217482DD400429D6E /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../icon.png; sourceTree = "<group>"; };
 		CB7359B417482E4F00429D6E /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "../icon@2x.png"; sourceTree = "<group>"; };
 		CB7359B61748326500429D6E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		CB7359BC174847F600429D6E /* Geolookup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Geolookup.h; sourceTree = "<group>"; };
+		CB7359BD174847F600429D6E /* Geolookup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Geolookup.m; sourceTree = "<group>"; };
+		CB7359BF174849FC00429D6E /* MappingProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MappingProvider.h; sourceTree = "<group>"; };
+		CB7359C0174849FC00429D6E /* MappingProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MappingProvider.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +75,6 @@
 		CB4968E91748133C005D007E = {
 			isa = PBXGroup;
 			children = (
-				CB7359B61748326500429D6E /* CoreLocation.framework */,
 				CB4968FB1748133C005D007E /* WhatToPlant */,
 				CB4968F41748133C005D007E /* Frameworks */,
 				CB4968F31748133C005D007E /* Products */,
@@ -101,10 +106,12 @@
 			children = (
 				CB4969041748133C005D007E /* WhatToPlantAppDelegate.h */,
 				CB4969051748133C005D007E /* WhatToPlantAppDelegate.m */,
-				CB7359A917482CF600429D6E /* AppLoadingViewController.h */,
-				CB7359AA17482CF600429D6E /* AppLoadingViewController.m */,
-				CB7359AB17482CF600429D6E /* AppLoadingViewController.xib */,
+				CB7359B9174846E200429D6E /* Models */,
+				CB7359BA174846ED00429D6E /* Controllers */,
+				CB7359BB174846F700429D6E /* Views */,
 				CB4968FC1748133C005D007E /* Supporting Files */,
+				CB7359BF174849FC00429D6E /* MappingProvider.h */,
+				CB7359C0174849FC00429D6E /* MappingProvider.m */,
 			);
 			path = WhatToPlant;
 			sourceTree = "<group>";
@@ -112,6 +119,7 @@
 		CB4968FC1748133C005D007E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CB7359B61748326500429D6E /* CoreLocation.framework */,
 				CB7359B417482E4F00429D6E /* icon@2x.png */,
 				CB7359B217482DD400429D6E /* icon.png */,
 				CB7359AF17482D6000429D6E /* logo.png */,
@@ -124,6 +132,32 @@
 				CB49690B1748133C005D007E /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CB7359B9174846E200429D6E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CB7359BC174847F600429D6E /* Geolookup.h */,
+				CB7359BD174847F600429D6E /* Geolookup.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		CB7359BA174846ED00429D6E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CB7359A917482CF600429D6E /* AppLoadingViewController.h */,
+				CB7359AA17482CF600429D6E /* AppLoadingViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		CB7359BB174846F700429D6E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CB7359AB17482CF600429D6E /* AppLoadingViewController.xib */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,6 +266,8 @@
 				CB4969021748133C005D007E /* main.m in Sources */,
 				CB4969061748133C005D007E /* WhatToPlantAppDelegate.m in Sources */,
 				CB7359AC17482CF600429D6E /* AppLoadingViewController.m in Sources */,
+				CB7359BE174847F600429D6E /* Geolookup.m in Sources */,
+				CB7359C1174849FC00429D6E /* MappingProvider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
