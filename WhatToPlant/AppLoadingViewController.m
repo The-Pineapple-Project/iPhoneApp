@@ -10,6 +10,7 @@
 #import "Geolookup.h"
 #import <RestKit/RestKit.h>
 #import "MappingProvider.h"
+#import "SVProgressHUD.h"
 
 @interface AppLoadingViewController ()
 
@@ -28,8 +29,6 @@
         [locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
         [locationManager setDelegate:self];
         
-        // progress: Finished Step 1 (App is loaded). Step 2 is "request location"
-        [progressBar setProgress:0.25 animated:YES];
         [progressText setText:@"finding your location"];
         
         // Start finding location
@@ -43,16 +42,18 @@
 {
     CLLocation *loc = locations[0];
     NSLog(@"%@", loc);
+    [locationManager stopUpdatingLocation];
     
-    
-//    [self loadClimateData];
+    [SVProgressHUD show];
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^{
+        [self loadClimateDataForCoordinate:[loc coordinate]];
+    });
+
 }
 
-- (void)loadClimateData
+- (void)loadClimateDataForCoordinate:(CLLocationCoordinate2D)coordinate
 {
-    // Get latitude & longitude
-    CLLocationCoordinate2D coordinate = [[locationManager location] coordinate];
-    
     // API: Weather Underground
     // http:// api.wunderground.com/api/81cd84db7bf69b83/geolookup/q/37.776289,-122.395234.json
     NSIndexSet *statusCodeSet = RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful);
@@ -73,11 +74,11 @@
     
     [operation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         NSLog(@"SUCCESS! Response: %@", mappingResult.array);
-//        [SVProgressHUD dismiss];
+        [SVProgressHUD dismiss];
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         NSLog(@"ERROR: %@", error);
         NSLog(@"Response: %@", operation.HTTPRequestOperation.responseString);
-//        [SVProgressHUD showErrorWithStatus:@"Request failed"];
+        [SVProgressHUD showErrorWithStatus:@"Request failed"];
     }];
     
     [operation start];

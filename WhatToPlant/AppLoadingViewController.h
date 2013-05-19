@@ -15,7 +15,6 @@
     
     __weak IBOutlet UIImageView *logo;
     __weak IBOutlet UILabel *greeting;
-    __weak IBOutlet UIProgressView *progressBar;
     __weak IBOutlet UILabel *progressText;
 }
 

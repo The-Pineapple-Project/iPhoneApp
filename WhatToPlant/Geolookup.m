@@ -9,5 +9,11 @@
 #import "Geolookup.h"
 
 @implementation Geolookup
-
+-(NSString *)description
+{
+    return [NSString stringWithFormat:@"Country: %@    Province: %@    City: %@",
+            self.country,
+            self.province,
+            self.city];
+}
 @end
